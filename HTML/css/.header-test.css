@@ -1,6 +1,3 @@
-.target{
-    color:red;
-}
 .header ul{
     display: flex;
     justify-content: space-between;
