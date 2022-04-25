@@ -1,0 +1,21 @@
+.items{
+    display: flex;
+    width: 540px;
+    flex-wrap: wrap;
+}
+
+.item{
+    width: 180px;
+}
+
+.pic {
+    width: 150px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+.item h1{
+    text-align: center;
+    margin-top: 0;
+}
