@@ -2,12 +2,16 @@
     content: "";
     display: block;
     clear: both;
-}  
+} 
 
 .header{
     width: 400px;
     height: 100px;
     background-color: #141f40;
+}
+
+.main{
+
 }
 
 .left{
@@ -18,10 +22,6 @@
 }
 
 .right{
-    float: left;
-}
-
-.left2{
     float: left;
 }
 
@@ -41,7 +41,6 @@
     width: 100px;
     height: 150px;
     background-color: #ff9e6b;
-    float: right;
 }
 
 .another{
