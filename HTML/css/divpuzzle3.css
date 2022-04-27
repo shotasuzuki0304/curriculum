@@ -10,6 +10,33 @@
     background-color: #141f40;
 }
 
+.box{
+    width: 160px;
+    height: 60px;
+    background-color: white;
+}
+
+.innerbox1{
+    width: 40px;
+    height: 40px;
+    background-color: #a9004b;
+}
+
+.innerbox2{
+    width: 40px;
+    height: 40px;
+    background-color: #a9004b;
+}
+.innerbox3{
+    width: 40px;
+    height: 40px;
+    background-color: #a9004b;
+}
+
+/*.main{
+}
+*/
+
 .left{
     width: 150px;
     height: 250px;
@@ -22,6 +49,42 @@
     height: 250px;
     background-color: #8c2727;
     float: left;
+}
+
+.object1{
+    width: 150px;
+    height: 50px;
+    background-color: white;
+}
+
+.innerobject1{
+    width: 140px;
+    height: 40px;
+    background-color: #ff863f;
+}
+
+.object2{
+    width: 150px;
+    height: 50px;
+    background-color: white;
+}
+
+.innerobject2{
+    width: 140px;
+    height: 40px;
+    background-color: #ff863f;
+}
+
+.object3{
+    width: 150px;
+    height: 50px;
+    background-color: white;
+}
+
+.innerobject3{
+    width: 140px;
+    height: 40px;
+    background-color: #ff863f;
 }
 
 .footer{
