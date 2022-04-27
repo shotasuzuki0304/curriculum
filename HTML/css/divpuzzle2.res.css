@@ -41,13 +41,40 @@
 }
 
 @media screen and (max-width: 479px){
-    .body{
+    .header{
+        width: 150px;
+        height: 100px;
+    }
+    .main left{
+        width: 150px;
+        height: 100px;
+        float: none;
+    }
+    .main right{
+        float: none;
+    }
+    .above left2{
+        float: none;
+    }
+    .up{
         width: 150px;
     }
-    .main{
+    .down{
+        width: 150px;
+        height: 100px;
+    }
+    .above right2{
+        height: 100px;
         float: none;
     }
-    .left2{
-        float: none;
+    .another{
+        width: 150px;
+        height: 100px;
     }
+    .footer{
+        width: 150px;
+        height: 100px;
+    }
+
+
 }
