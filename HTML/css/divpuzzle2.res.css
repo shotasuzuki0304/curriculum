@@ -45,15 +45,15 @@
         width: 150px;
         height: 100px;
     }
-    .main left{
+    .left{
         width: 150px;
         height: 100px;
         float: none;
     }
-    .main right{
+    .right{
         float: none;
     }
-    .above left2{
+    .left2{
         float: none;
     }
     .up{
@@ -63,7 +63,8 @@
         width: 150px;
         height: 100px;
     }
-    .above right2{
+    .right2{
+        width: 150px;
         height: 100px;
         float: none;
     }
@@ -75,6 +76,4 @@
         width: 150px;
         height: 100px;
     }
-
-
 }
