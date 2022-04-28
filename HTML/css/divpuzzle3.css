@@ -4,34 +4,49 @@
     clear: both;
 } 
 
+
 .header{
     width: 400px;
     height: 100px;
     background-color: #141f40;
+    position: relative;
 }
 
 .box{
     width: 160px;
     height: 60px;
     background-color: white;
+    position: absolute;
+    top: 20px;
+    left: 220px;
 }
 
 .innerbox1{
     width: 40px;
     height: 40px;
     background-color: #a9004b;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .innerbox2{
     width: 40px;
     height: 40px;
     background-color: #a9004b;
+    position: absolute;
+    top: 10px;
+    left: 60px;
 }
 .innerbox3{
     width: 40px;
     height: 40px;
     background-color: #a9004b;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
+*/
 
 /*.main{
 }
@@ -49,43 +64,63 @@
     height: 250px;
     background-color: #8c2727;
     float: left;
+    position: relative;
 }
 
 .object1{
     width: 150px;
     height: 50px;
     background-color: white;
+    position: absolute;
+    left: 40px;
+    top: 40px;
 }
 
 .innerobject1{
     width: 140px;
     height: 40px;
     background-color: #ff863f;
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .object2{
     width: 150px;
     height: 50px;
     background-color: white;
+    position: absolute;
+    left: 40px;
+    top: 100px;
 }
 
 .innerobject2{
     width: 140px;
     height: 40px;
     background-color: #ff863f;
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .object3{
     width: 150px;
     height: 50px;
     background-color: white;
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
 }
 
 .innerobject3{
     width: 140px;
     height: 40px;
     background-color: #ff863f;
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
+
 
 .footer{
     width: 400px;
