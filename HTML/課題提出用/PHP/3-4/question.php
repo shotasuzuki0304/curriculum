@@ -443,6 +443,7 @@ echo '<br>';
 */
 ?>
 
+<link rel="stylesheet" href="./CSS/3-4.css">
 <?php
 
 // 〈正解〉HTML内にPHPを埋め込む書き方
