@@ -5,9 +5,6 @@ include_once("dbconnect.php");
 $errorMessage = "";
 $signUpMessage = "";
 
-// セッション開始
-if(!isset($_SESSION)){ session_start(); }
-
 // ログインボタンが押された場合
 if (isset($_POST["signUp"])) {
     // 1. ユーザIDの入力チェック
@@ -33,9 +30,12 @@ if (isset($_POST["signUp"])) {
 
         // 3. エラー処理
         try {
-            $pdo = new PDO($db['dsn'],$db['user'], $db['pass'], array(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION));
+            $pdo = new PDO($dsn,$db['user'], $db['pass'], array(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION));
+            //PDOインスタンスを作成
+            //dsnは32行目を引用
 
-            $stmt = $pdo->prepare("INSERT INTO userData(name, password) VALUES (?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO users(name, password) VALUES (:name, :password)");
+            //
 
             $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT)));  
             // パスワードのハッシュ化を行う（今回は文字列のみなのでbindValue(変数の内容が変わらない)を使用せず、直接excuteに渡しても問題ない）

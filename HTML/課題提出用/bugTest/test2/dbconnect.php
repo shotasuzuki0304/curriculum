@@ -9,6 +9,4 @@ $db['user'] = "root";
 $db['pass'] = "root";
 // データベース名
 $db['dbname'] = "YIGroupBlog";
-//DSN
-$db['dsn'] = "mysql:host=localhost;charset=utf8;dbname=YIGroupBlog";
 ?>
