@@ -35,9 +35,9 @@ if (isset($_POST["signUp"])) {
             //dsnは32行目を引用
 
             $stmt = $pdo->prepare("INSERT INTO users(name, password) VALUES (:name, :password)");
-            //
 
-            $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT)));  
+            $stmt->execute(array(':name'=>$username, ':password'=>password_hash($password, PASSWORD_DEFAULT)));  
+            //$stmt->execute(array(':name'=>$name, ':password'=>password_hash($password, PASSWORD_DEFAULT)));
             // パスワードのハッシュ化を行う（今回は文字列のみなのでbindValue(変数の内容が変わらない)を使用せず、直接excuteに渡しても問題ない）
             $userid = $pdo->lastinsertid();  // 登録した(DB側でauto_incrementした)IDを$useridに入れる
 
@@ -61,7 +61,7 @@ if (isset($_POST["signUp"])) {
     </head>
     <body>
         <h1>新規登録画面</h1>
-        <form id="loginForm" name="loginForm" action="" method="POST">
+        <form name="loginForm" action="" method="POST">
             <fieldset>
                 <legend>新規登録フォーム</legend>
                 <div><font color="#ff0000"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></font></div>
