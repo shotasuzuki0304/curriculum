@@ -10,17 +10,19 @@ object(PDOStatement)#3 (1) { ["queryString"]=> string(36) "SELECT * FROM posts O
 */
 $name = $userdata["last_name"].$userdata["first_name"];
 
-$table = $namae->getPostData();
-var_dump(implode ("," $table));
+$table =new getData();
+$tabledata = $table->getPostData();
+var_dump($tabledata);
 
 
 
 
 foreach ($table as $key =>$value) {
-    var_dump($table);
+    echo $key;
+    echo $value;
 }
 ?>
-
+//25行目
 
 <!DOCTYPE html>
 <html lang="en">    

@@ -1,3 +1,11 @@
+body {
+    width: 1000px ;
+}
+
+table{
+    border-collapse:collapse;
+}
+
 .clearfix:after {
     content: "";
     display: block;
@@ -12,6 +20,7 @@
     height: 120px;
     width: 200px;
     background-color: #add8e6;
+    margin: 0 auto;
     float: left;
 }
 
@@ -22,39 +31,39 @@
     height: 60px;
     width: 800px;
     background-color: #87ceeb;
-    float: left;
     text-align:right;
+    float: left;
 }
 
 .under {
     height: 60px;
     width: 800px;
     background-color: #00ffff;
-    float: left;
     text-align:right;
+    float: left;
 }
 
-/*
-.main {}
-*/
+table {
+    margin: 10px auto;
+}
+
 
 .up {
     height: 30px;
     width: 700px;
     background-color: #87ceeb;
-    float: left;
 }
 
 .down {
     height: 150px;
     width: 700px;
     background-color: #e0ffff;
-    float: left;
 }
 
 .footer {
     height: 50px;
     width: 1000px;
     background-color: #00ced1;
+    margin: 0 auto;
 }
 
