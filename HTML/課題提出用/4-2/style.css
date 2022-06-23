@@ -33,6 +33,7 @@ table{
     background-color: #87ceeb;
     text-align:right;
     float: left;
+    line-height: 50px;
 }
 
 .under {
@@ -41,24 +42,23 @@ table{
     background-color: #00ffff;
     text-align:right;
     float: left;
+    line-height: 50px;
 }
 
 table {
     margin: 10px auto;
+    border-collapse:collapse;
+    border-color: white;
 }
 
-
-.up {
-    height: 30px;
-    width: 700px;
-    background-color: #87ceeb;
+th {
+    background-color: #87ceeb ;
 }
 
-.down {
-    height: 150px;
-    width: 700px;
+tr {
     background-color: #e0ffff;
 }
+
 
 .footer {
     height: 50px;
