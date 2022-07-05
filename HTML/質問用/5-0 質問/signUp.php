@@ -3,6 +3,10 @@
 // db_connect.phpの読み込みFILL_IN
 require_once("db_connect.php");
 
+// エラーメッセージ、登録完了メッセージの初期化
+echo $errorMessage = "";
+echo $signUpMessage = "";
+
 //入力してない場合の処理を書く
 //if文はネスト化可能、優先度が高いものから書いていく
 //iseset→イエスかノーか判定する(フォームのsubmitで判定を行うことができる)
@@ -11,12 +15,15 @@ require_once("db_connect.php");
 // nameとpassword両方送られてきたら処理実行
 if (isset ($_POST["signUp"])) {
     //送られてきた値が2つあるか確認する
-    if (empty($_POST["name"])) {
+    if (empty($_POST["name"]) && empty($_POST["password"])) {
+        echo $errorMessage = '名前とパスワードが未入力です。';
+    } elseif (empty($_POST["name"])) {
         echo $errorMessage = '名前が未入力です。';
-    } else if (empty($_POST["password"])) {
+    } elseif (empty($_POST["password"])) {
         echo $errorMessage = 'パスワードが未入力です。';
-        //値が2つとも送信されてきた場合の処理
-    } else {
+    }
+     //値が2つとも送信されてきた場合の処理
+    if (!empty($_POST["name"] && !empty($_POST["password"]))) {
         //送られて来た値を変数に格納する
         $name = $_POST['name'];
         $password = $_POST['password'];
