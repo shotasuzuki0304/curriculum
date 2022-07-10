@@ -1,15 +1,6 @@
 <?php
 require_once('db_connect.php');
 
-$pdo = db_connect();
-
-echo "テスト";
-?>
-
-<link rel="stylesheet" href="style.css">
-<?php
-require_once('db_connect.php');
-
 session_start();
 
 if (empty($_SESSION["user_name"])) {
@@ -41,10 +32,9 @@ try {
         <a href = "logout.php">ログアウト</a>
         <table>
             <tr>
-                <th width="150">タイトル</th>
-                <th width="180">発売日</th>
-                <th width="100">在庫数</th>
-                <th width="100"></th>
+                <td>タイトル</td>
+                <td>発売日</td>
+                <td>在庫数</td>
             </tr>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
             <tr>

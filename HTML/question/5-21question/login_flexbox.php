@@ -1,5 +1,5 @@
 <!-- CSSファイルの読み込み -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style_flexbox.css">
 
 <?php
 // db_connect.phpの読み込み
@@ -66,14 +66,16 @@ if (!empty($_POST)) {
         <title>ログイン画面</title>
     </head>
     <body>
+        <div class="container">
         <h1 class="in">ログイン画面</h1>
         <a href="user.php" class="user">新規ユーザー登録</a>
+        </div>
         <form method="post" class="form" action="">
-            <input type="text" name="name" placeholder="ユーザー名">
+            <input type="text" name="name" placeholder="ユーザー名" class="username">
             <br>
-            <input type="password" name="password" placeholder="パスワード">
+            <input type="password" name="password" placeholder="パスワード" class="password">
             <br>
-            <input type="submit" value="ログイン" name="signUp">
+            <input type="submit" value="ログイン" name="signUp" class="loginbotton">
         </form>
     </body>
 </html>

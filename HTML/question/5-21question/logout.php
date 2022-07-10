@@ -1,3 +1,6 @@
+<!-- CSSファイルの読み込み -->
+<link rel="stylesheet" href="style.css">
+
 <?php
 // セッション開始
 session_start();

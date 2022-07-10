@@ -1,4 +1,5 @@
 <?php
+// DBに接続するための関数
 function db_connect() {
     try {
     $dsn = 'mysql:host=localhost;charset=utf8;dbname=checktest5;';
