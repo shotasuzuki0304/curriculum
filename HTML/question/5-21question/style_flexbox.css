@@ -10,7 +10,6 @@ a {
 }
 
 /* main.php用 */
-/* 表 */
 table{
     /* 隣接するボーダーラインを重ねあわせて表示 */
     border-collapse: collapse;
@@ -23,7 +22,6 @@ th{
     background-color: lightgray;
 }
 
-/* main.php用 */
 .zaiko {
     /* 文字の大きさ */
     font-size: 30px;
@@ -80,6 +78,8 @@ th{
     padding: 7 10px;
     /* インラインブロック化 */
     display: inline-block;
+    /* 高さ */
+    height: 30px;
 }
 
 .username {
@@ -114,11 +114,6 @@ th{
 }
 
 /* user.php用 */
-.in {
-    /* 文字の太さ */
-    font-weight:normal; 
-}
-
 .usertouroku {
     /* 文字の太さ */
     font-weight:normal;
