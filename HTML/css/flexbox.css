@@ -1,0 +1,19 @@
+.items{
+    display: flex;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.items:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+.pic {
+    width: 150px;
+    height: 100px;
+}
+
+.item h1{
+    text-align: center;
+    margin-top: 0;
+}

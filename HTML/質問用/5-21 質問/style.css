@@ -1,0 +1,165 @@
+/* リンク全体に適用 */
+a {
+    color: white;
+    /* インラインブロック化 */
+    display: inline-block;
+    /* リンクの下線を消す */
+    text-decoration:none;
+    /* 角の丸み */
+    border-radius: 5px;
+}
+
+/* main.php用 */
+/* 表 */
+table{
+    /* 隣接するボーダーラインを重ねあわせて表示 */
+    border-collapse: collapse;
+    /* ボーダーラインの色 */
+    border-color: lightgray;
+}
+
+th{
+    /* 背景色 */
+    background-color: lightgray;
+}
+
+/* main.php用 */
+.zaiko {
+    /* 文字の大きさ */
+    font-size: 30px;
+    /* 文字の太さ */
+    font-weight:normal; 
+}
+.new {
+    /* 背景色 */
+    background-color: #0066FF;
+    /* 内側の余白 */
+    padding: 3 10px;
+    /* 外側の余白 */
+    margin: 2 5 15 5px;
+}
+
+.out {
+    /* 背景色 */
+    background-color: gray;
+    /* 内側の余白 */
+    padding: 3 10px;
+    /* 外側の余白 */
+    margin: 2 5 15 5px;
+}
+
+.delete {
+    /* 背景色 */
+    background-color: #990000;
+    /* 内側の余白 */
+    padding: 3 10px;
+    /* 外側の余白 */
+    margin: 5px;
+}
+
+/* login.php用 */
+.user {
+    /* 背景色 */
+    background-color: #339999;
+    /* 内側の余白 */
+    padding: 7 10px;
+    /* インラインブロック化 */
+    display: inline-block;
+}
+
+/* user.php用 */
+.in {
+    /* 文字の太さ */
+    font-weight:normal; 
+}
+
+.usertouroku {
+    /* 文字の太さ */
+    font-weight:normal;
+    /*文字の大きさ  */
+    font-size: 20px;
+    /* 外側の余白 */
+    margin: 5 10px;
+}
+
+.name {
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* 幅 */
+    width: 200px;
+}
+
+.pass {
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* 幅 */
+    width: 200px;
+}
+
+.botton {
+    /* 背景色 */
+    background-color: #0099FF;
+    /* 文字の色 */
+    color: white;
+    /* 内側の余白 */
+    padding: 3 30px;
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* インラインブロック化 */
+    display: inline-block;
+    /* リンクの下線を消す */
+    text-decoration:none;
+    /* 角の丸み */
+    border-radius: 5px;
+}
+
+/* newBook.php用 */
+.booktouroku {
+    /* 文字の大きさ */
+    font-size: 20px;
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* 文字の太さ */
+    font-weight:normal; 
+}
+
+.title {
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* 幅 */
+    width: 200px;
+}
+
+.release {
+    /* 外側の余白 */
+    margin: 5 10px;
+    /* 幅 */
+    width: 200px;
+}
+
+.zaiko_lot {
+    /* 外側の余白 */
+    margin: 5 10px;
+}
+
+.select {
+    /* 外側の余白 */
+    margin: 5 5px;
+}
+
+.bookbotton {
+    /* 背景色 */
+    background-color: #0099FF;
+    /* 文字の色 */
+    color: white;
+    /* 内側の余白 */
+    padding: 3 30px;
+    /* 外側の余白 */
+    margin: 5 5px;
+    /* インラインブロック化 */
+    display: inline-block;
+    /* リンクの下線を消す */
+    text-decoration:none;
+    /* 角の丸み */
+    border-radius: 5px;
+}
