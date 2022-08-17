@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+      * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<!-- ゲームを描画 -->
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<!-- JavaScriptのコードを記述 -->
+<script>
+    // 変数を定義
+    var canvas = document.getElementById("myCanvas"); // <canvas>要素への参照を変数canvasに保存
+    // 2D描画コンテキスト(Canvasに描画するために使うツール)を保存するためにctx変数を作成
+    var ctx = canvas.getContext("2d");  // 2Dグラフィックを描画するためのメソッドやプロパティをもつオブジェクトを返す。
+    var ballRadius = 10; // 描画される円の半径
+    var x = canvas.width/2; // x座標(開始位置) = 240
+    var y = canvas.height-30; // y座標(開始位置) = 290
+    var dx = 2; // 弾の進行方向&移動速度
+    var dy = -2; // 弾の進行方向&移動速度
+    
+    
+    // ボールを描写する関数
+    function drawBall() {
+        ctx.beginPath(); // パスをリセット
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2); // 円を描写
+        ctx.fillStyle = "#0095DD"; // 塗りつぶしの色を指定
+        ctx.fill(); // サブパスを塗りつぶす
+        ctx.closePath();
+    }
+
+    function draw() {
+        // ボールの軌跡を消去
+        // 四角形の左上端のx、y座標と四角形の右下端のx、y座標です。この四角形で囲われた領域にある内容全てが消去される
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawBall();
+        /*
+        上端でボールを弾ませる
+        ボールの位置のyの値が0未満だったら、符号反転させた値を設定することでy軸方向の動きの向きを変える
+        y座標がCanvasの高さより高かったら(左上端からyの値を数えているため、上端は0で始まり下端はCanvasの高さである480ピクセルとなる)
+        もし、y座標(開始位置)とdy(弾の進行方向&移動距離)を足した数値が0未満だったら進行方向を反転させる
+        if(y + dy < 0) {
+            dy = -dy;
+        }
+        // 下端でボールを弾ませる
+        // y座標がCanvasの高さより高かったら、y軸方向の動きを反転させる
+        if(y + dy > canvas.height) {
+        dy = -dy;
+        }
+        */
+        // 2つの条件のどちらかがtrueなら、ボールの動きを反転させる
+        // もし、y座標(開始位置)とdy(弾の進行方向&移動距離)を足した数値が、310より大きく10より小さければ処理を実行
+        if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+            dy = -dy; // 進行方向を逆にする
+        }
+        // 左端と右端で弾ませる
+        if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+            dx = -dx; // 進行方向を逆にする
+        }
+        // ボールが新しい位置に描画されるようにする
+        x += dx; // x座標(開始位置) に dx(2)を足す→右方向に移動
+        y += dy; // y座標(開始位置) に dy(-2)を足す→上方向に移動
+    }
+    
+    setInterval(draw,10); // draw関数がsetIntervalの中で10ミリ秒おきに実行される
+</script>
+
+</body>
+</html>

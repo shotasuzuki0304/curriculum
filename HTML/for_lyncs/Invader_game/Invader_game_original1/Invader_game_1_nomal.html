@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <title>nomal mode</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 敵の作り直しと整列 -->
+        <input type="button" value="ゲーム開始" onclick="buttonStart_click(this.value);">
+    
+    </head>
+    
+    <!-- onLoad属性はブラウザからページを読み込むときに実行する処理を呼び出す -->
+    <body onload="initw()">
+        <canvas id="canvas" width="600" height="600" tabindex="1"></canvas>
+        <canvas id="canvas2" width="600" height="600" tabindex="2"></canvas>
+        <script src="Invader_game_1_nomal.js"></script>
+    </body>
+    
+    </html>
+

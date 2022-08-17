@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+      * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<!-- ゲームを描画 -->
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<!-- JavaScriptのコードを記述 -->
+<script>
+    // 変数を定義
+    var canvas = document.getElementById("myCanvas"); // <canvas>要素への参照を変数canvasに保存
+    // 2D描画コンテキスト(Canvasに描画するために使うツール)を保存するためにctx変数を作成
+    var ctx = canvas.getContext("2d"); // 2Dグラフィックを描画するためのメソッドやプロパティをもつオブジェクトを返す
+    var ballRadius = 10; // 描画される円の半径
+    var x = canvas.width/2; // x座標(開始位置) = 240
+    var y = canvas.height-30; // y座標(開始位置) = 290
+    var dx = 2; // 弾の進行方向&移動速度
+    var dy = -2; // 弾の進行方向&移動速度
+    var paddleHeight = 10; // パドルを定義するための変数
+    var paddleWidth = 75; // パドルを定義するための変数
+    // パドルの開始地点を定義
+    var paddleX = (canvas.width-paddleWidth)/2; // paddleX = 480 - 75/2 = 202.5
+    // 左の操作ボタンが押されているか、右の操作ボタンが押されているかという情報を保存する変数
+    // 押されているボタンはこのとおり、ブーリアン値として定義、初期化できる
+    var rightPressed = false;
+    var leftPressed = false;
+
+    // ボタンが押されたのを検知するためのイベントリスナー
+    // キーボードのキーのどれかに対してkeydownイベントが発火したとき (どれかが押されたとき) 、keyDownHandler()関数が実行される
+    document.addEventListener("keydown",keyDownHandler,false); // 任意のキーが押された時に発火
+    document.addEventListener("keyup",keyUpHandler,false); // 任意のキーを離すタイミングで発火
+
+    // キーが押されたとき、その情報は変数に保存される
+    // 関連する変数がtrueに設定され、キーが離されたときに変数はfalseに戻される
+    // 変数eで表されるイベントをパラメーターとしてとる
+    // keyは押されたキーについての情報を持っている
+    // 大抵のブラウザでは左右の矢印キーにそれぞれ ArrowLeft と ArrowRight が対応する
+    // IE/Edge に対応するために、 Left と Rightも確認する必要がある
+    // 左カーソルが押されたら、変数leftPressedはtrueに、離されたら変数leftPressedはfalseに設定される
+    function keyDownHandler(e) {
+        if(e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = true;
+        }
+        else if(e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = true;
+        }
+    }
+
+    function keyUpHandler(e) {
+        if(e.key == "Right" || e.key == "ArrowRight") {
+            rightPressed = false;
+        }
+        else if(e.key == "Left" || e.key == "ArrowLeft") {
+            leftPressed = false;
+        }
+    }
+    
+    // ボールを描写する関数
+    function drawBall() {
+        ctx.beginPath(); // パスをリセット
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2); // 円を描写
+        ctx.fillStyle = "#0095DD"; // 塗りつぶしの色を指定
+        ctx.fill(); // サブパスを塗りつぶす
+        ctx.closePath();
+    }
+
+    // パドルを描写する関数
+    function drawPaddle() {
+        ctx.beginPath(); // パスをリセット
+        ctx.rect(paddleX,canvas.height-paddleHeight,paddleWidth,paddleHeight); // 四角形のパドルを描写
+        ctx.fillStyle = "#0095DD"; // 塗りつぶしの色を指定
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function draw() {
+        // ボールの軌跡を消去
+        // 四角形の左上端のx、y座標と四角形の右下端のx、y座標です。この四角形で囲われた領域にある内容全てが消去される
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawBall();
+        drawPaddle();
+
+        // 上端と下端で弾ませる
+        // y座標(開始位置)とdy(弾の進行方向&移動距離)を足した数値が、310より大きく10より小さければ処理を実行
+        if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+            dy = -dy;  // 進行方向を逆にする
+        }
+        // 左端と右端で弾ませる
+        if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+            dx = -dx; // 進行方向を逆にする
+        }
+        // パドルの移動
+        // 右カーソルが押されて、480 - 75 = 405以下(Canvasの境界内)なら処理を実行
+        if(rightPressed && paddleX < canvas.width-paddleWidth) {
+            paddleX += 7;  // 7ピクセル右に動かす
+        }
+        else if(leftPressed && paddleX > 0) {
+            paddleX -= 7; // 7ピクセル左に動かす
+        }
+        // ボールが新しい位置に描画されるようにする
+        x += dx; // x座標(開始位置) に dx(2)を足す→右方向に移動
+        y += dy; // y座標(開始位置) に dy(-2)を足す→上方向に移動
+    }
+
+    setInterval(draw,10); // draw関数がsetIntervalの中で10ミリ秒おきに実行される
+</script>
+
+</body>
+</html>

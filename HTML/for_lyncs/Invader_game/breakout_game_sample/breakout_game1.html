@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+      * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<!-- ゲームを描画 -->
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<!-- JavaScriptのコードを記述 -->
+<script>
+    var canvas = document.getElementById("myCanvas"); // <canvas>要素への参照を変数canvasに保存
+    // 2D描画コンテキスト(Canvasに描画するために使うツール)を保存するためにctx変数を作成
+    var ctx = canvas.getContext("2d"); // 2Dグラフィックを描画するためのメソッドやプロパティをもつオブジェクトを返す
+
+    // 赤い四角形
+    ctx.beginPath(); // パスをリセット
+    ctx.rect(20, 40, 50, 50); // 四角形を描写
+    ctx.fillStyle = "#FF0000"; // 塗り潰し
+    ctx.fill(); // サブパスを塗りつぶす
+    ctx.closePath(); // 四角形の線を引いてパスを閉じる
+
+    // 緑の円
+    ctx.beginPath(); 
+    ctx.arc(240, 160, 20, 0, Math.PI*2, false); // 円を描写
+    ctx.fillStyle = "green"; // 緑で塗りつぶす
+    ctx.fill(); // サブパスを塗りつぶす
+    ctx.closePath(); // 円を描いてパスを閉じる
+    
+    // 青い四角形の輪郭
+    ctx.beginPath();
+    ctx.rect(160, 10, 100, 40);
+    // 輪郭の色やスタイルを指定
+    ctx.strokeStyle = "rgba(0, 0, 255, 0.5)"; // RGBAカラーモデルで色を指定
+    ctx.stroke(); // 現在の線スタイルでサブパスを輪郭表示
+    ctx.closePath();
+</script>
+
+</body>
+</html>

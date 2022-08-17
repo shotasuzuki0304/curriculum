@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>2022/08/29</title>
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+<!-- 背景の色と位置を設定 -->
+    <style>
+        body {
+            background: #eee;
+        }
+        canvas {
+            background: #000;
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+<!-- 画像の読み込み -->
+<img id="player" src="img/jiki.png">
+<img id="enemy" src="img/mido.png">
+<img id="player_bullet" src="img/baku.png">
+<img id="enemy_bullet" src="img/nani.png">
+
+<!-- キャンバスの作成 -->
+<canvas id="screen" width="480" height="640"></canvas>
+
+<!-- JavaScriptファイルの読み込み -->
+<script src="js/shooting.js"></script>
+
+</html>
