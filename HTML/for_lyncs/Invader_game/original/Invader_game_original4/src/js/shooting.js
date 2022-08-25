@@ -446,14 +446,14 @@ var mainloop = function() {
     /* 実行する関数 */
     // プレイヤーの移動処理
     movePlayer();
-    // プレイヤーの弾の移動処理
-    movePlayerBullets();
     // 敵キャラの移動処理
     moveEnemies();
     // 大きい敵キャラの移動処理
     moveLargeEnemies();
     // ボス敵キャラの移動処理
     moveBossEnemies();
+    // プレイヤーの弾の移動処理
+    movePlayerBullets();
     // ボス敵キャラの弾の移動処理
     moveBossEnemyBullets();
 
@@ -646,6 +646,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe1_hp -=1;
                     enemies_hp[i] -=1;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -659,6 +663,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe2_hp -=1;
                     enemies_hp[i] -=1;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -672,6 +680,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe3_hp -=1;
                     enemies_hp[i] -=1;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -685,12 +697,16 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe4_hp -=1;
                     enemies_hp[i] -=1;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
     }
 
-    // 大きい壁と敵の当たり判定
+    // 壁と大きい敵の当たり判定
     if(kabe1_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
             // 敵が生きている間のみ判定する
@@ -699,6 +715,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe1_hp -=1;
                     large_enemies_hp[i] -=2;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(large_enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -712,6 +732,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe2_hp -=1;
                     large_enemies_hp[i] -=2;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(large_enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -725,6 +749,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe3_hp -=1;
                     large_enemies_hp[i] -=2;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(large_enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -738,6 +766,10 @@ var mainloop = function() {
                     // 当たっているのでお互いのHPを1削る
                     kabe4_hp -=1;
                     large_enemies_hp[i] -=2;
+                    // 敵を撃破した場合はkilledを増やす
+                    if(large_enemies_hp[i] == 0) {
+                        killed++; 
+                    }
                 }
             }
         }
@@ -876,14 +908,16 @@ window.onload = function() {
     /* 画像を取得 */
     // Playerの画像（id='player'で指定された<img>）を取得
     img_player = document.getElementById('player');
-    // Playerの弾画像（id='player_bullet'で指定された<img>）を取得
-    img_player_bullet = document.getElementById('player_bullet');
     // 敵キャラの画像（id='enemy'で指定された<img>）を取得
     img_enemy = document.getElementById('enemy');
     // 大きい敵キャラの画像（id='enemy'で指定された<img>）を取得
     img_large_enemy = document.getElementById('large_enemy');
     // ボス敵キャラの画像（id='enemy'で指定された<img>）を取得
     img_boss_enemy = document.getElementById('boss_enemy');
+
+    /* 弾の画像を取得 */
+    // Playerの弾画像（id='player_bullet'で指定された<img>）を取得
+    img_player_bullet = document.getElementById('player_bullet');
     // ボス敵キャラの弾の画像（id='boss_enemy_bullet'で指定された<img>）を取得
     img_boss_enemy_bullet = document.getElementById('boss_enemy_bullet');
     // 壁の画像(img id="kabe")を取得
@@ -935,22 +969,22 @@ window.onload = function() {
     // 壁1の位置とHPを指定
     kabe1_x = 40; 
     kabe1_y = (canvas.height - kabe1.height) -140 
-    kabe1_hp = 3;
+    kabe1_hp = 5;
 
     // 壁2の位置とHPを指定
     kabe2_x = 200; 
     kabe2_y = (canvas.height - kabe2.height) -140
-    kabe2_hp = 3;
+    kabe2_hp = 5;
 
     // 壁3の位置とHPを指定
     kabe3_x = 400; 
     kabe3_y = (canvas.height - kabe3.height) -140 
-    kabe3_hp = 3;
+    kabe3_hp = 5;
 
     // 壁4の位置とHPを指定
     kabe4_x = 570; 
     kabe4_y = (canvas.height - kabe4.height) -140 
-    kabe4_hp = 3;
+    kabe4_hp = 5;
 
     // メインループを開始する
     mainloop();
