@@ -119,110 +119,6 @@ window.onkeyup = function(e) {
     KEYS[e.keyCode] = false;
 } 
 
-/* 再描画する関数（無引数、無戻り値）*/
-var redraw = function() {
-    // キャンバスをクリアする
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    /* プレイヤーと敵の画像の描画 */
-    // 生きている場合のみ、新しい位置にプレイヤーを描画
-    if(player_hp > 0) {
-        ctx.drawImage(img_player, player_x, player_y);
-    }
-
-    // 敵キャラの画像を (enemies_x[i], enemies_y[i]) の位置に表示
-    for(var i=0; i<ENEMIES; i++) {
-        // 生きている場合のみ描画
-        if(enemies_hp[i] > 0) {
-            ctx.drawImage(img_enemy, enemies_x[i], enemies_y[i]);
-        }
-    }
-
-    // 大きい敵キャラの画像を (enemies_x[i], enemies_y[i]) の位置に表示
-    for(var i=0; i<LARGEENEMIES; i++) {
-        // 生きている場合のみ描画
-        if(large_enemies_hp[i] > 0) {
-            ctx.drawImage(img_large_enemy, large_enemies_x[i], large_enemies_y[i]);
-        }
-    }
-    // ボス敵キャラの画像を (enemies_x[i], enemies_y[i]) の位置に表示
-    if(boss_enemy_hp > 0) {
-        ctx.drawImage(img_boss_enemy, boss_enemy_x, boss_enemy_y);
-    }
-
-    /* 弾の画像の描画 */
-    // 弾の画像を (bullets_x[i], bullets_y[i]) の位置に表示
-    for(var i=0; i<BULLETS; i++) {
-        // 生きている場合のみ描画
-        if(player_bullets_hp[i] > 0) {
-            ctx.drawImage(img_player_bullet,player_bullets_x[i],player_bullets_y[i]);
-        }
-    }
-    
-    // ボス敵の弾の画像を (boss_bullets_x[i], boss_bullets_y[i]) の位置に表示
-    for(var i=0; i<BOSSENEMIEBULLETS; i++) {
-        // 生きている場合のみ描画
-        if(boss_enemy_bullets_hp[i] > 0) {
-            ctx.drawImage(img_boss_enemy_bullet,boss_enemy_bullets_x[i],boss_enemy_bullets_y[i]);
-        }
-    }
-
-    // 壁の画像を描画
-    if(kabe1_hp > 0) {
-        ctx.drawImage(img_kabe1,kabe1_x,kabe1_y);
-    }
-    if(kabe2_hp > 0) {
-        ctx.drawImage(img_kabe2,kabe2_x,kabe2_y);
-    }
-    if(kabe3_hp > 0) {
-        ctx.drawImage(img_kabe3,kabe3_x,kabe3_y);
-    }
-    if(kabe4_hp > 0) {
-        ctx.drawImage(img_kabe4,kabe4_x,kabe4_y);
-    }
-
-    // コンテキストの状態を保存（fillStyleを変えたりするので）
-    ctx.save();
-    // HPの最大値（10）x 5 の短形を描画（白）
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(10, canvas.height-10, 10*5, 5);
-    // 残りHP x 5 の短形を描画（赤）
-    ctx.fillStyle = "#f00";
-    ctx.fillRect(10, canvas.height-10, player_hp*5, 5);
-    
-    // 「倒した敵の数/全敵の数」という文字列を作成
-    var text = "Killed: " + killed + "/" + (ENEMIES + LARGEENEMIES);
-    // 文字列の（描画）横幅を計算する
-    var width = ctx.measureText(text).width;
-    // 文字列を描画（白）
-    ctx.fillStyle = "#fff";
-    ctx.fillText(text, canvas.width - 10 - width, canvas.height - 10);
-    
-    // プレイヤーが死んでいた場合ゲームオーバー画面を表示する
-    if(player_hp <= 0) {
-        // 真ん中に大きな文字でゲームオーバー（赤）と表示する
-        ctx.font = "60px sans-serif";
-        ctx.textBaseline = "middle"; // 上下位置のベースラインを中心に
-        ctx.fillStyle = "#f00";
-        text = "Game Over";
-        width = ctx.measureText(text).width;
-        ctx.fillText(text, (canvas.width - width)/2, canvas.height/2);
-    } 
-    
-    // ボス敵を撃破したらゲームクリアと表示させる
-    if(boss_enemy_hp <= 0) {
-        // 真ん中に大きな文字でゲームクリア（白）と表示する
-        ctx.font = "60px sans-serif";
-        ctx.textBaseline = "middle"; // 上下位置のベースラインを中心に
-        ctx.fillStyle = "#fff";
-        text = "Game Clear!!";
-        width = ctx.measureText(text).width;
-        ctx.fillText(text, (canvas.width - width)/2, canvas.height/2);
-    }
-    // コンテキストの状態を復元
-    ctx.restore();
-};
-
 /* 移動に関する処理 */
 // プレイヤーの移動処理、弾の発射を定義
 var movePlayer = function() {
@@ -344,7 +240,7 @@ var moveBossEnemies = function() {
         // 未使用の弾があれば発射する
         for(var i=0; i<BOSSENEMIEBULLETS; i++) {
             if(boss_enemy_bullets_hp[i] == 0) {
-                // 弾の初期位置はプレイヤーと同じ位置にする
+                // ボス敵の弾の初期位置はボス敵と同じ位置にする
                 boss_enemy_bullets_x[i] = boss_enemy_x;
                 boss_enemy_bullets_y[i] = (boss_enemy_y +100 );
                 // 弾のHPを1にすることで、次のループから描画や移動処理が行われるようにする
@@ -366,7 +262,7 @@ var moveBossEnemies = function() {
     
 };
 
-/* 弾の関する処理 */
+/* 弾に関する処理 */
 // プレイヤーの弾の移動処理を定義    
 var movePlayerBullets = function() {
     var SPEED = -6;
@@ -438,6 +334,110 @@ var hitCheck = function(x1, y1, obj1, x2, y2, obj2) {
     }
 };
 
+// 再描画する関数（無引数、無戻り値）
+var redraw = function() {
+    // キャンバスをクリアする
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* プレイヤーと敵の画像の描画 */
+    // 生きている場合のみ、新しい位置にプレイヤーを描画
+    if(player_hp > 0) {
+        ctx.drawImage(img_player, player_x, player_y);
+    }
+
+    // 敵キャラの画像を (enemies_x[i], enemies_y[i]) の位置に表示
+    for(var i=0; i<ENEMIES; i++) {
+        // 生きている場合のみ描画
+        if(enemies_hp[i] > 0) {
+            ctx.drawImage(img_enemy, enemies_x[i], enemies_y[i]);
+        }
+    }
+
+    // 大きい敵キャラの画像を (large_enemies_x[i], large_enemies_y[i]) の位置に表示
+    for(var i=0; i<LARGEENEMIES; i++) {
+        // 生きている場合のみ描画
+        if(large_enemies_hp[i] > 0) {
+            ctx.drawImage(img_large_enemy, large_enemies_x[i], large_enemies_y[i]);
+        }
+    }
+    // ボス敵キャラの画像を (boss_enemies_x[i], boss_enemies_y[i]) の位置に表示
+    if(boss_enemy_hp > 0) {
+        ctx.drawImage(img_boss_enemy, boss_enemy_x, boss_enemy_y);
+    }
+
+    /* 弾の画像の描画 */
+    // 弾の画像を (bullets_x[i], bullets_y[i]) の位置に表示
+    for(var i=0; i<BULLETS; i++) {
+        // 生きている場合のみ描画
+        if(player_bullets_hp[i] > 0) {
+            ctx.drawImage(img_player_bullet,player_bullets_x[i],player_bullets_y[i]);
+        }
+    }
+    
+    // ボス敵の弾の画像を (boss_enemy_bullets_x[i], boss_enemy_bullets_y[i]) の位置に表示
+    for(var i=0; i<BOSSENEMIEBULLETS; i++) {
+        // 生きている場合のみ描画
+        if(boss_enemy_bullets_hp[i] > 0) {
+            ctx.drawImage(img_boss_enemy_bullet,boss_enemy_bullets_x[i],boss_enemy_bullets_y[i]);
+        }
+    }
+
+    // 壁の画像を描画
+    if(kabe1_hp > 0) {
+        ctx.drawImage(img_kabe1,kabe1_x,kabe1_y);
+    }
+    if(kabe2_hp > 0) {
+        ctx.drawImage(img_kabe2,kabe2_x,kabe2_y);
+    }
+    if(kabe3_hp > 0) {
+        ctx.drawImage(img_kabe3,kabe3_x,kabe3_y);
+    }
+    if(kabe4_hp > 0) {
+        ctx.drawImage(img_kabe4,kabe4_x,kabe4_y);
+    }
+
+    // コンテキストの状態を保存（fillStyleを変えたりするので）
+    ctx.save();
+    // HPの最大値（10）x 5 の短形を描画（白）
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(10, canvas.height-10, 10*5, 5);
+    // 残りHP x 5 の短形を描画（赤）
+    ctx.fillStyle = "#f00";
+    ctx.fillRect(10, canvas.height-10, player_hp*5, 5);
+    
+    // 「倒した敵の数/全敵の数」という文字列を作成
+    var text = "Killed: " + killed + "/" + (ENEMIES + LARGEENEMIES);
+    // 文字列の（描画）横幅を計算する
+    var width = ctx.measureText(text).width;
+    // 文字列を描画（白）
+    ctx.fillStyle = "#fff";
+    ctx.fillText(text, canvas.width - 10 - width, canvas.height - 10);
+    
+    // プレイヤーが死んでいた場合ゲームオーバー画面を表示する
+    if(player_hp <= 0) {
+        // 真ん中に大きな文字でゲームオーバー（赤）と表示する
+        ctx.font = "60px sans-serif";
+        ctx.textBaseline = "middle"; // 上下位置のベースラインを中心に
+        ctx.fillStyle = "#f00";
+        text = "Game Over";
+        width = ctx.measureText(text).width;
+        ctx.fillText(text, (canvas.width - width)/2, canvas.height/2);
+    } 
+    
+    // ボス敵を撃破したらゲームクリアと表示させる
+    if(boss_enemy_hp <= 0) {
+        // 真ん中に大きな文字でゲームクリア（白）と表示する
+        ctx.font = "60px sans-serif";
+        ctx.textBaseline = "middle"; // 上下位置のベースラインを中心に
+        ctx.fillStyle = "#fff";
+        text = "Game Clear!!";
+        width = ctx.measureText(text).width;
+        ctx.fillText(text, (canvas.width - width)/2, canvas.height/2);
+    }
+    // コンテキストの状態を復元
+    ctx.restore();
+};
+
 // メインループを定義
 var mainloop = function() {
     // 処理開始時間を保存
@@ -479,13 +479,13 @@ var mainloop = function() {
     // プレイヤーと大きい敵キャラの当たり判定(プレイヤーが生きている場合)
     if(player_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が生きている間のみ判定する
+            // 大きい敵が生きている間のみ判定する
             if(large_enemies_hp[i] > 0) {
                 if(hitCheck(player_x, player_y, img_player, large_enemies_x[i], large_enemies_y[i], img_large_enemy)){
                     // 当たっているのでお互いのHPを1削る
                     player_hp -=1;
                     large_enemies_hp[i] -=1;
-                    // 敵を撃破した場合はkilledを増やす
+                    // 大きい敵を撃破した場合はkilledを増やす
                     if(large_enemies_hp[i] == 0) {
                         killed++; 
                     }
@@ -525,7 +525,7 @@ var mainloop = function() {
     // プレイヤー弾と大きい敵キャラの当たり判定（プレイヤーが生きている場合）
     if(player_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が死んでいる場合はスルーする
+            // 大きい敵が死んでいる場合はスルーする
             if(large_enemies_hp[i] <= 0) {
                 continue;
             }
@@ -541,7 +541,7 @@ var mainloop = function() {
                         // 当たっているのでお互いのHPを1削る
                         player_bullets_hp[j] -= 1;
                         large_enemies_hp[i] -= 1;
-                       // 敵が死んだ場合は killed を増やす
+                       // 大きい敵が死んだ場合は killed を増やす
                         if(large_enemies_hp[i] == 0) {
                         killed++;
                     }
@@ -568,7 +568,7 @@ var mainloop = function() {
         } 
     }
 
-    // 壁とプレイヤーの弾の当たり判定（壁が生きている場合）
+    // 壁とプレイヤーの弾の当たり判定（壁が生きている場合のみ判定）
     if(kabe1_hp > 0) {
         for(var j=0; j<BULLETS; j++) {
             // 弾が死んでいる場合はスルーする
@@ -637,7 +637,7 @@ var mainloop = function() {
         } 
     }
 
-    // 敵と壁の当たり判定(壁が生きている場合のみ判定)
+    // 壁と敵の当たり判定(壁が生きている場合のみ判定)
     if(kabe1_hp >0) {
         for(var i=0; i<ENEMIES; i++) {
             // 敵が生きている間のみ判定する
@@ -709,13 +709,13 @@ var mainloop = function() {
     // 壁と大きい敵の当たり判定
     if(kabe1_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が生きている間のみ判定する
+            // 大きい敵が生きている間のみ判定する
             if(large_enemies_hp[i] > 0) {
                 if(hitCheck(kabe1_x, kabe1_y, img_kabe1, large_enemies_x[i], large_enemies_y[i], img_large_enemy)){
                     // 当たっているのでお互いのHPを1削る
                     kabe1_hp -=1;
                     large_enemies_hp[i] -=2;
-                    // 敵を撃破した場合はkilledを増やす
+                    // 大きい敵を撃破した場合はkilledを増やす
                     if(large_enemies_hp[i] == 0) {
                         killed++; 
                     }
@@ -726,13 +726,13 @@ var mainloop = function() {
 
     if(kabe2_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が生きている間のみ判定する
+            // 大きい敵が生きている間のみ判定する
             if(large_enemies_hp[i] > 0) {
                 if(hitCheck(kabe2_x, kabe2_y, img_kabe2, large_enemies_x[i], large_enemies_y[i], img_large_enemy)){
                     // 当たっているのでお互いのHPを1削る
                     kabe2_hp -=1;
                     large_enemies_hp[i] -=2;
-                    // 敵を撃破した場合はkilledを増やす
+                    // 大きい敵を撃破した場合はkilledを増やす
                     if(large_enemies_hp[i] == 0) {
                         killed++; 
                     }
@@ -743,13 +743,13 @@ var mainloop = function() {
 
     if(kabe3_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が生きている間のみ判定する
+            // 大きい敵が生きている間のみ判定する
             if(large_enemies_hp[i] > 0) {
                 if(hitCheck(kabe3_x, kabe3_y, img_kabe3, large_enemies_x[i], large_enemies_y[i], img_large_enemy)){
                     // 当たっているのでお互いのHPを1削る
                     kabe3_hp -=1;
                     large_enemies_hp[i] -=2;
-                    // 敵を撃破した場合はkilledを増やす
+                    // 大きい敵を撃破した場合はkilledを増やす
                     if(large_enemies_hp[i] == 0) {
                         killed++; 
                     }
@@ -760,13 +760,13 @@ var mainloop = function() {
 
     if(kabe4_hp > 0) {
         for(var i=0; i<LARGEENEMIES; i++) {
-            // 敵が生きている間のみ判定する
+            // 大きい敵が生きている間のみ判定する
             if(large_enemies_hp[i] > 0) {
                 if(hitCheck(kabe4_x, kabe4_y, img_kabe4, large_enemies_x[i], large_enemies_y[i], img_large_enemy)){
                     // 当たっているのでお互いのHPを1削る
                     kabe4_hp -=1;
                     large_enemies_hp[i] -=2;
-                    // 敵を撃破した場合はkilledを増やす
+                    // 大きい敵を撃破した場合はkilledを増やす
                     if(large_enemies_hp[i] == 0) {
                         killed++; 
                     }
@@ -778,7 +778,7 @@ var mainloop = function() {
     // 壁とボス敵の弾の当たり判定
     if( kabe1_hp > 0) {
         for(var j=0; j<BOSSENEMIEBULLETS; j++) {
-            // 弾が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[j] <= 0) {
                 continue;
             }
@@ -794,7 +794,7 @@ var mainloop = function() {
     }
     if( kabe2_hp > 0) {
         for(var j=0; j<BOSSENEMIEBULLETS; j++) {
-            // 弾が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[j] <= 0) {
                 continue;
             }
@@ -810,7 +810,7 @@ var mainloop = function() {
     }
     if( kabe3_hp > 0) {
         for(var j=0; j<BOSSENEMIEBULLETS; j++) {
-            // 弾が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[j] <= 0) {
                 continue;
             }
@@ -826,7 +826,7 @@ var mainloop = function() {
     }
     if( kabe4_hp > 0) {
         for(var j=0; j<BOSSENEMIEBULLETS; j++) {
-            // 弾が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[j] <= 0) {
                 continue;
             }
@@ -841,10 +841,10 @@ var mainloop = function() {
         } 
     }
 
-    // ボス敵の弾とプレイヤーの当たり判定
+    // ボス敵の弾とプレイヤーの当たり判定(プレイヤーが生きている場合のみ判定)
     if( player_hp > 0) {
         for(var j=0; j<BOSSENEMIEBULLETS; j++) {
-            // 弾が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[j] <= 0) {
                 continue;
             }
@@ -858,11 +858,11 @@ var mainloop = function() {
                 }    
         } 
     }
-
-    // プレイヤーの弾とボスの弾の当たり判定
+    
+    // プレイヤーの弾とボス敵の弾の当たり判定(プレイヤーが生きている場合のみ判定)
     if(player_hp > 0) {
         for(var i=0; i<BOSSENEMIEBULLETS; i++) {
-            // 敵が死んでいる場合はスルーする
+            // ボス敵の弾が死んでいる場合はスルーする
             if(boss_enemy_bullets_hp[i] <= 0) {
                 continue;
             }
