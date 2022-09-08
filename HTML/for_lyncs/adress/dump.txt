@@ -1,0 +1,55 @@
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: adress
+-- ------------------------------------------------------
+-- Server version	10.4.24-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `adress`
+--
+
+DROP TABLE IF EXISTS `adress`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `adress` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `home` varchar(255) DEFAULT NULL,
+  `furigana` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `adress`
+--
+
+LOCK TABLES `adress` WRITE;
+/*!40000 ALTER TABLE `adress` DISABLE KEYS */;
+INSERT INTO `adress` VALUES (22,'相川　翔','666-444-222','aizawa@ymail.com','青森県青森市III','あいかわ　しょう'),(24,'宇田川　明子','999-333-555','akikoudagawa@ymail.com','愛媛県愛媛市','うだがわ　あきこ'),(25,'江戸川　虎南','444-555-333','konanedogawa@ymail.com','東京都江戸川区','えどがわ　こなん'),(26,'岡崎　新平','666-333-222','shinpeiokazaki@ymail.com','埼玉県熊谷市','おかざき　しんぺい'),(27,'加納　英孝','999-222-333','eikokanou@ymail.com','新潟県新潟市','かのう　えいこう'),(28,'北川　恵子','555-666-333','keikokitagawa@ymail.com','長野県長野市','きたがわ　けいこ'),(29,'工藤　静香','666-444-222','kudoushizuka@ymail.com','千葉県浦安市','くどう　しずか'),(31,'小谷　玲子','999-333-555','reikokotani@ymail.com','広島県広島市','こたにれいこ'),(32,'斎藤　一','666-333-222','hajimesaitou@ymail.com','東京都江戸川区','さいとう　はじめ'),(33,'品川　三郎','666-333-222','saburousinagawa@ymail.com','青森県青森市III','しながわ　さぶろう'),(34,'鈴木　真一','666-444-222','shinishisuzuki@ymail.com','富山県富山市','すずき　しんいち'),(35,'芹沢　優','999-333-555','yuuserizawa@ymail.com','秋田県秋田市','せりざわ　ゆう'),(36,'孫　悟空','590-590-590','osuoragokuu@ymail.com','埼玉県さいたま市','そんごくう'),(37,'田中　由紀','999-000-322','yukitanaka@ymail.com','東京都江戸川区','たなか　ゆき'),(39,'津田　加奈子','999-222-333','kanakotuda@ymail.com','福岡県福岡市','つだ　かなこ'),(40,'勅使河原　零士','999-333-555','teshigawara@ymail.com','東京都江戸川区','てしがわら　れいじ'),(41,'利根川　幸雄','666-333-222','zawazawazawazawa@ymail.com','東京都江戸川区','とねがわ　ゆきお'),(43,'ナジーム　メハド','666-333-222','mehadonajimu@ymail.com','岩手県北上市','なじーむ　めはど'),(45,'滑皮　秀信','666-333-222','yoshinobunumerigawa@ymail.com','東京都江戸川区','ぬめりがわ　よしのぶ'),(46,'ケイト　スペード','999-000-322','keitospead@ymail.com','愛媛県愛媛市','けいと　すぺーど'),(47,'チン　ギスハン','666-333-222','mongol800@ymail.com','静岡県静岡市','ちん　ぎすはん'),(48,'にしおか　すみこ','555-333-222','nishiokasumikodayo@ymail.com','東京都江戸川区','にしおか　すみこ'),(49,'いしだ　あゆみ','666-333-222','ayumiisida@ymail.com','東京都江戸川区','いしだ　あゆみ'),(50,'根津　龍','666-333-222','ryuunezu@yamil.com','広島県広島市','ねず　りゅう'),(51,'野村　正建','999-333-555','shuukennnomura@ymail.com','東京都江戸川区','のむら　しょうけん');
+/*!40000 ALTER TABLE `adress` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-09-09  0:14:07
